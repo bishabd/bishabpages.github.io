@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dBishab</title>
+    <title>Tic Tac Toe</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="TITLE.JPG">
     <style>
         body {
-            font-family: 'Fira Sans Condensed', sans-serif;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,36 +20,39 @@
 
         .container {
             text-align: center;
+            width: 90%; /* Prevent content from stretching too much */
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 20px;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
 
         .board {
             display: grid;
-            grid-template-columns: repeat(3, 120px);
-            grid-template-rows: repeat(3, 120px);
+            grid-template-columns: repeat(3, 1fr); /* 3 columns for Tic-Tac-Toe */
             gap: 10px;
-            padding: 10px;
+            width: 90vmin; /* Keep the board responsive to screen size */
+            max-width: 400px; /* Ensure the board doesn't grow too large */
+            aspect-ratio: 1; /* Maintain a square board */
+            margin: 0 auto; /* Center the board */
             background: rgba(0, 0, 0, 0.05);
+            padding: 10px;
             border-radius: 10px;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-            margin: 0 auto; /* Center the board within the container */
         }
 
         .cell {
-            width: 120px;
-            height: 120px;
+            width: 100%; /* Full width of the grid cell */
+            aspect-ratio: 1; /* Maintain square tiles */
             display: flex;
             justify-content: center;
             align-items: center;
             background: #1c1a1a;
             border: 2px solid #87CEEB;
             border-radius: 10px;
-            font-size: 3rem;
+            font-size: calc(1.5vmin + 1rem); /* Responsive font size */
             font-weight: bold;
             color: #ffffff;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
@@ -69,14 +72,14 @@
 
         .message {
             margin-top: 20px;
-            font-size: 1.5rem;
+            font-size: calc(1rem + 1vmin); /* Responsive font size */
             font-weight: bold;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .refresh {
             margin-top: 20px;
-            padding: 12px 30px;
+            padding: 10px 20px;
             font-size: 1rem;
             font-weight: bold;
             background: #FFA07A;
@@ -218,4 +221,3 @@
     </script>
 </body>
 </html>
-
