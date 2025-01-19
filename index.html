@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe</title>
+    <title>dBishab's Game Zone</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="TITLE.JPG">
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Fira Sans Condensed', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column; /* Allow vertical stacking */
             height: 100vh;
             margin: 0;
             background: #D3D3D3;
@@ -93,7 +94,15 @@
         .refresh:hover {
             background: #FF7F50;
         }
+
+        .code {
+            margin-top: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
     </style>
+    <script defer src="https://cdn.overtracking.com/t/tR4ZbKNSQ1bQg6uO2/"></script>
 </head>
 <body>
     <div class="container">
@@ -101,13 +110,34 @@
         <div class="board" id="board"></div>
         <div class="message" id="message"></div>
         <button class="refresh" onclick="location.reload()">Play Again</button>
+        <div class="code" id="code"></div>
     </div>
 
     <script>
         const board = document.getElementById('board');
         const message = document.getElementById('message');
+        const codeElement = document.getElementById('code');
         const cells = Array(9).fill(null);
         let isPlayerTurn = true;
+        const generatedCodes = new Set();
+
+        // Random 16-character code generator
+        function generateCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code;
+            do {
+                code = Array(16)
+                    .fill(null)
+                    .map(() => chars.charAt(Math.floor(Math.random() * chars.length)))
+                    .join('');
+                code = code.match(/.{1,4}/g).join('-'); // Format as XXXX-XXXX-XXXX-XXXX
+            } while (generatedCodes.has(code));
+            generatedCodes.add(code);
+            return code;
+        }
+
+        // Display the generated code
+        codeElement.textContent = `Generated Code: ${generateCode()}`;
 
         function checkWinner(cells) {
             const winningCombinations = [
